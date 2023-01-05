@@ -1,12 +1,12 @@
 from tkinter import *
-from decimal import *
+from decimal import Decimal
+
 
 PADX = 3
 PADY = 3
 HISTORY_FONT = ("Arial", 8)
 DISPLAY_FONT = ("Arial", 10)
 ENTRY_FONT = ("Arial", 20)
-NUM_STRINGS = "0123456789"
 
 history = ["", "", "", ""]
 
@@ -20,35 +20,7 @@ def number(number_text):
         number_entry.config(text=new_text)
 
 
-def zero():
-    number(NUM_STRINGS[0])
-def one():
-    number(NUM_STRINGS[1])
-def two():
-    number(NUM_STRINGS[2])
-def three():
-    number(NUM_STRINGS[3])
-def four():
-    number(NUM_STRINGS[4])
-def five():
-    number(NUM_STRINGS[5])
-def six():
-    number(NUM_STRINGS[6])
-def seven():
-    number(NUM_STRINGS[7])
-def eight():
-    number(NUM_STRINGS[8])
-def nine():
-    number(NUM_STRINGS[9])
-
-
-def dot():
-    if "." not in number_entry.cget("text"):
-        new_text = number_entry.cget("text") + "."
-        number_entry.config(text=new_text)
-
-
-def calculate():
+def calculate(operator):
     global history
     n1 = display.cget("text")
     n1_actual = n1[:-1]
@@ -72,24 +44,16 @@ def calculate():
             history3.config(text=history[2])
             history4.config(text=history[3])
     number_entry.config(text="0")
-    return str(n3)
+    if operator != "=":
+        display.config(text=(n3 + operator))
+    else:
+        display.config(text=n3)
 
 
-def add():
-    n3 = calculate()
-    display.config(text=(n3 + "+"))
-def subtract():
-    n3 = calculate()
-    display.config(text=(n3 + "-"))
-def multiply():
-    n3 = calculate()
-    display.config(text=(n3 + "*"))
-def divide():
-    n3 = calculate()
-    display.config(text=(n3 + "/"))
-def equals():
-    n3 = calculate()
-    display.config(text=n3)
+def dot():
+    if "." not in number_entry.cget("text"):
+        new_text = number_entry.cget("text") + "."
+        number_entry.config(text=new_text)
 
 
 def backspace():
@@ -147,37 +111,37 @@ number_entry = Label(pady=PADY, text="0", font=ENTRY_FONT)
 number_entry.grid(row=2, column=0, columnspan=4)
 
 # Number Buttons
-zero_button = NewButton(text=NUM_STRINGS[0], command=zero)
+zero_button = NewButton(text="0", command=lambda: number("0"))
 zero_button.grid(row=7, column=0)
-one_button = NewButton(text=NUM_STRINGS[1], command=one)
+one_button = NewButton(text="1", command=lambda: number("1"))
 one_button.grid(row=6, column=0)
-two_button = NewButton(text=NUM_STRINGS[2], command=two)
+two_button = NewButton(text="2", command=lambda: number("2"))
 two_button.grid(row=6, column=1)
-three_button = NewButton(text=NUM_STRINGS[3], command=three)
+three_button = NewButton(text="3", command=lambda: number("3"))
 three_button.grid(row=6, column=2)
-four_button = NewButton(text=NUM_STRINGS[4], command=four)
+four_button = NewButton(text="4", command=lambda: number("4"))
 four_button.grid(row=5, column=0)
-five_button = NewButton(text=NUM_STRINGS[5], command=five)
+five_button = NewButton(text="5", command=lambda: number("5"))
 five_button.grid(row=5, column=1)
-six_button = NewButton(text=NUM_STRINGS[6], command=six)
+six_button = NewButton(text="6", command=lambda: number("6"))
 six_button.grid(row=5, column=2)
-seven_button = NewButton(text=NUM_STRINGS[7], command=seven)
+seven_button = NewButton(text="7", command=lambda: number("7"))
 seven_button.grid(row=4, column=0)
-eight_button = NewButton(text=NUM_STRINGS[8], command=eight)
+eight_button = NewButton(text="8", command=lambda: number("8"))
 eight_button.grid(row=4, column=1)
-nine_button = NewButton(text=NUM_STRINGS[9], command=nine)
+nine_button = NewButton(text="9", command=lambda: number("9"))
 nine_button.grid(row=4, column=2)
 
 # Calculation Buttons
-add_button = NewButton(text="+", command=add)
+add_button = NewButton(text="+", command=lambda: calculate("+"))
 add_button.grid(row=4, column=3)
-subtract_button = NewButton(text="-", command=subtract)
+subtract_button = NewButton(text="-", command=lambda: calculate("-"))
 subtract_button.grid(row=5, column=3)
-multiply_button = NewButton(text="*", command=multiply)
+multiply_button = NewButton(text="*", command=lambda: calculate("*"))
 multiply_button.grid(row=6, column=3)
-divide_button = NewButton(text="/", command=divide)
+divide_button = NewButton(text="/", command=lambda: calculate("/"))
 divide_button.grid(row=7, column=3)
-equals_button = NewButton(text="=", command=equals)
+equals_button = NewButton(text="=", command=lambda: calculate("="))
 equals_button.grid(row=7, column=2)
 
 # Other Buttons
@@ -196,4 +160,3 @@ window.mainloop()
 
 # TODO: move gui code to separate file
 # TODO: move function code to separate file
-# TODO: once-over to make more DRY where possible
