@@ -114,6 +114,3 @@ decimal_button = NewButton(text=".", command=lambda: dot(number_entry))
 decimal_button.grid(row=7, column=1)
 
 window.mainloop()
-
-# TODO: move gui code to separate file
-# TODO: consider breaking up and moving calculate function to button_functions module
