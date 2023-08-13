@@ -1,6 +1,7 @@
 from tkinter import *
 from decimal import Decimal
 from button_functions import number, dot, backspace, switch_sign, clear_entry, clear
+from gui import NewButton, MyWindow
 
 
 PADX = 3
@@ -42,17 +43,8 @@ def calculate(operator):
         display.config(text=n3)
 
 
-class NewButton(Button):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, width=6, height=3, **kwargs)
+window = MyWindow()
 
-    def grid(self, *args, **kwargs):
-        super().grid(*args, padx=PADX, pady=PADY, **kwargs)
-
-
-window = Tk()
-window.title("Calculator")
-window.config(padx=PADX, pady=PADY)
 
 history1 = Label(pady=PADY, text=history[0], font=HISTORY_FONT)
 history1.grid(row=0, column=0)
