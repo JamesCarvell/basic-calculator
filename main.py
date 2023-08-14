@@ -1,4 +1,10 @@
 from gui import MyWindow
 
-window = MyWindow()
-window.mainloop()
+
+def main():
+    window = MyWindow()
+    window.mainloop()
+
+
+if __name__ == "__main__":
+    main()

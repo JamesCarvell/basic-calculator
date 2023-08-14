@@ -34,7 +34,7 @@ class MyWindow(Tk):
         history_display_4.grid(row=0, column=3)
         result_display = Label(pady=PADY, text=" ", font=RESULT_FONT)
         result_display.grid(row=1, column=0, columnspan=4)
-        number_entry = Label(pady=PADY, text="0", font=ENTRY_FONT)
+        number_entry = Label(pady=PADY, text=" ", font=ENTRY_FONT)
         number_entry.grid(row=2, column=0, columnspan=4)
 
         # Number Buttons
@@ -60,15 +60,25 @@ class MyWindow(Tk):
         nine_button.grid(row=4, column=2)
 
         # Calculation Buttons
-        add_button = NewButton(text="+", command=lambda: calculate("+", number_entry, result_display, history_display_1, history_display_2, history_display_3, history_display_4))
+        add_button = NewButton(text="+",
+                               command=lambda: calculate("+", number_entry, result_display, history_display_1,
+                                                         history_display_2, history_display_3, history_display_4))
         add_button.grid(row=4, column=3)
-        subtract_button = NewButton(text="-", command=lambda: calculate("-", number_entry, result_display, history_display_1, history_display_2, history_display_3, history_display_4))
+        subtract_button = NewButton(text="-",
+                                    command=lambda: calculate("-", number_entry, result_display, history_display_1,
+                                                              history_display_2, history_display_3, history_display_4))
         subtract_button.grid(row=5, column=3)
-        multiply_button = NewButton(text="*", command=lambda: calculate("*", number_entry, result_display, history_display_1, history_display_2, history_display_3, history_display_4))
+        multiply_button = NewButton(text="*",
+                                    command=lambda: calculate("*", number_entry, result_display, history_display_1,
+                                                              history_display_2, history_display_3, history_display_4))
         multiply_button.grid(row=6, column=3)
-        divide_button = NewButton(text="/", command=lambda: calculate("/", number_entry, result_display, history_display_1, history_display_2, history_display_3, history_display_4))
+        divide_button = NewButton(text="/",
+                                  command=lambda: calculate("/", number_entry, result_display, history_display_1,
+                                                            history_display_2, history_display_3, history_display_4))
         divide_button.grid(row=7, column=3)
-        equals_button = NewButton(text="=", command=lambda: calculate("=", number_entry, result_display, history_display_1, history_display_2, history_display_3, history_display_4))
+        equals_button = NewButton(text="=",
+                                  command=lambda: calculate("=", number_entry, result_display, history_display_1,
+                                                            history_display_2, history_display_3, history_display_4))
         equals_button.grid(row=7, column=2)
 
         # Other Buttons
@@ -78,7 +88,7 @@ class MyWindow(Tk):
         clear_entry_button.grid(row=3, column=1)
         clear_button = NewButton(text="C", command=lambda: clear(number_entry, result_display))
         clear_button.grid(row=3, column=2)
-        switch_sign_button = NewButton(text="+/-", command=lambda: switch_sign)
+        switch_sign_button = NewButton(text="+/-", command=lambda: switch_sign(number_entry))
         switch_sign_button.grid(row=3, column=3)
         decimal_button = NewButton(text=".", command=lambda: dot(number_entry))
         decimal_button.grid(row=7, column=1)
