@@ -51,18 +51,18 @@ def calculate(operator, entry, *results):
     entry_string = entry.cget("text")
     result_string = results[0].cget("text")
 
-    if (entry_string == " ") and (result_string == " "):
+    if (entry_string[-1] == " ") and (result_string == " "):
         return
 
     result_string_sign = result_string[-1]
     result_string_number = result_string[:-1]
 
-    if (entry_string == " ") and (operator == "="):
+    if (entry_string[-1] == " ") and (operator == "="):
         return
-    elif (entry_string == " ") and result_string_sign.isdigit():
+    elif (entry_string[-1] == " ") and result_string_sign.isdigit():
         results[0].config(text=(result_string + operator))
         return
-    elif entry_string == " ":
+    elif entry_string[-1] == " ":
         results[0].config(text=(result_string_number + operator))
         return
 
